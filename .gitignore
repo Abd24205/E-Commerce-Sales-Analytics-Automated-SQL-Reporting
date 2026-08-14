@@ -138,3 +138,27 @@ desktop.ini
 *.temp
 >>>>>>> 910bdc77797d216765ad5ee6ce6fef5a1358dd8c
 *.log
+
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Generated automation files
+automation/latest_date.txt
+
+# Runtime failure/debug logs
+automation/logs/*.log
+automation/logs/*_investigation.txt
+
+# Keep the AI investigation example
+!automation/logs/2018-08-29_ai_investigation.txt
+
+# Keep the example successful report
+!automation/reports/2018-08-29_daily_sales.json

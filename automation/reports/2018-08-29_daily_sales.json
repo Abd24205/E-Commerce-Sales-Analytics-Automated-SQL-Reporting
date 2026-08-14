@@ -1,0 +1,11 @@
+{
+    "report_date": "2018-08-29",
+    "report_type": "daily_sales",
+    "status": "success",
+    "metrics": {
+        "report_date": "2018-08-29",
+        "total_sales": "4262.66",
+        "total_orders": 11,
+        "average_order_value": "387.51"
+    }
+}
