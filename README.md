@@ -103,11 +103,11 @@ The project is designed to demonstrate how analytics workflows can be made **rep
                     └─────────────────────┘
 
 ```
-## 🎯 Project Objectives
+# 🎯 Project Objectives
 
 The project was built to solve two related analytics problems:
 
-# 1. Business Intelligence
+## 1. Business Intelligence
 
 Provide an interactive view of:
 
@@ -119,7 +119,7 @@ Delivery performance
 Payment behavior
 Monthly trends
 
-# 2. Automated Analytics Operations
+## 2. Automated Analytics Operations
 
 Create a reporting workflow capable of:
 
@@ -131,11 +131,11 @@ Inspecting database schemas
 Identifying root causes
 Using AI to explain failures
 
-## 🗄️ Database Structure
+# 🗄️ Database Structure
 
 The project uses MySQL as the analytical database.
 
-# Main Tables
+## Main Tables
 
 ```text
 customers
@@ -175,7 +175,7 @@ payment_value
 review_score
 ```
 
-## 🔄 Analytics Workflow
+# 🔄 Analytics Workflow
 
 ```text
 Raw Dataset
@@ -193,7 +193,7 @@ DAX Measures
 Interactive Dashboard
 ```
 
-# The automated reporting workflow extends this process:
+## The automated reporting workflow extends this process:
 
 ```text
 Scheduled Job
@@ -218,7 +218,7 @@ Report                 ↓
                 Investigation Report
 ```
 
-## 🤖 Automated SQL Reporting
+# 🤖 Automated SQL Reporting
 
 The project includes a Python-based reporting engine that executes SQL queries for a supplied reporting date.
 
@@ -255,7 +255,8 @@ Example:
 }
 ```
 
-## 📊 Daily Sales SQL
+# 📊 Daily Sales SQL
+
 The reporting engine currently calculates:
 
 Total Sales
@@ -285,7 +286,7 @@ GROUP BY DATE(order_purchase_timestamp);
 ```
 The reporting date is supplied dynamically by the Python automation layer.
 
-## ✅ Report Validation
+# ✅ Report Validation
 
 Generated reports are validated before being saved.
 
@@ -301,7 +302,7 @@ Query returned a usable result
 
 This prevents invalid reports from silently being generated.
 
-## 🚨 Failure Handling
+# 🚨 Failure Handling
 
 The system includes a controlled failure workflow to simulate real-world SQL/reporting problems.
 
@@ -322,7 +323,7 @@ in 'field list'
 ```
 The system catches the failure and creates a failure log.
 
-## 🔍 Deterministic Failure Investigation
+# 🔍 Deterministic Failure Investigation
 
 Before using AI, the system performs deterministic analysis.
 
@@ -358,7 +359,7 @@ This is important because the AI is not expected to blindly guess the cause.
 
 The system first establishes verified technical facts.
 
-## 🧠 AI Failure Investigation
+# 🧠 AI Failure Investigation
 
 After deterministic analysis, the system sends the verified context to a local AI model.
 
@@ -403,7 +404,7 @@ SEVERITY:
 HIGH
 ```
 
-## 🛡️ Deterministic + AI Architecture
+# 🛡️ Deterministic + AI Architecture
 
 The AI layer is intentionally placed after deterministic validation.
 ```text
@@ -423,7 +424,7 @@ This prevents the LLM from being the only source of truth.
 
 The deterministic layer provides verified evidence, while the LLM provides a more readable explanation and debugging guidance.
 
-## ⏰ Automated Execution
+# ⏰ Automated Execution
 
 The project includes a Windows batch script:
 ```text
@@ -455,60 +456,55 @@ Automation completed
 ```
 The workflow can be connected to Windows Task Scheduler for recurring execution.
 
-## 📈 Power BI Dashboard
+## 📊 Power BI Dashboard
 
-The Power BI dashboard provides an interactive business-facing layer on top of the analytical data.
+### 1. Executive Sales Overview
 
-# 1. Executive Sales Overview
+![Executive Sales Overview](images/page1-executive-overview.png)
 
-Key metrics:
+- Total Sales: **13.59M**
+- Total Orders: **~99K**
+- Average Order Value: **136.68**
+- Average Delivery Days: **12.18**
+- Monthly sales trend
 
-Total Sales: 13.59M
-Total Orders: ~99K
-Average Order Value: 136.68
-Average Delivery Days: 12.18
-Monthly sales trend
+### 2. Product & Category Analysis
 
-# 2. Product & Category Analysis
+![Product & Category Analysis](images/page2-product-category.png)
 
-Analysis includes:
+- Sales by product category
+- Orders by product category
+- Average order value by category
 
-Sales by product category
-Orders by product category
-Average order value by category
-Category performance comparison
+### 3. Delivery & Customer Analysis
 
-# 3. Delivery & Customer Analysis
+![Delivery & Customer Analysis](images/page3-delivery-customer.png)
 
-Analysis includes:
+- On-time vs. late deliveries
+- Average delivery time by state
+- Orders by state
 
-On-time vs late deliveries
-Average delivery time by state
-Orders by state
-Geographic performance
+### 4. Payment & Order Trends
 
-# 4. Payment & Order Trends
+![Payment & Order Trends](images/page4-payment-orders.png)
 
-Analysis includes:
+- Revenue by payment method
+- Orders by payment method
+- Monthly order trends
 
-Revenue by payment method
-Orders by payment method
-Monthly order trends
-Payment behavior
+# 📐 Key DAX Measures
 
-## 📐 Key DAX Measures
-
-# Total Sales
+## Total Sales
 ```text
 Total Sales =
 SUM('ecommerce_dashboard'[payment_value])
 ```
-# Total Orders
+## Total Orders
 ```text
 Total Orders =
 DISTINCTCOUNT('orders'[order_id])
 ```
-# Average Order Value
+## Average Order Value
 ```text
 Average Order Value =
 DIVIDE(
@@ -517,33 +513,33 @@ DIVIDE(
 )
 ```
 
-# Average Delivery Days
+## Average Delivery Days
 ```text
 Average Delivery Days =
 AVERAGE('orders'[delivery_days])
 ```
 
-## 📊 Key Business Findings
+# 📊 Key Business Findings
 
 The analysis identified several important business patterns:
 
-Total sales reached approximately 13.59M across approximately 99K orders.
-bed_bath_table is one of the strongest categories by sales and order volume.
-computers shows a high average order value among displayed categories.
-Approximately 92.14% of orders were delivered on time.
-São Paulo (SP) is the dominant market by order volume and sales.
-Credit card is the dominant payment method by both order volume and payment value.
-Sales and order activity increased substantially through 2017, with November 2017 representing a major peak.
+- Total sales reached approximately 13.59M across approximately 99K orders.
+- bed_bath_table is one of the strongest categories by sales and order volume.
+- computers shows a high average order value among displayed categories.
+- Approximately 92.14% of orders were delivered on time.
+- São Paulo (SP) is the dominant market by order volume and sales.
+- Credit card is the dominant payment method by both order volume and payment value.
+- Sales and order activity increased substantially through 2017, with November 2017 representing a major peak.
 
-## 💡 Business Recommendations
+# 💡 Business Recommendations
 
 Based on the analysis:
 
-# 1. Focus on High-Performing Categories
+## 1. Focus on High-Performing Categories
 
 Maintain strong inventory availability and promotional activity for high-performing categories.
 
-# 2. Investigate High-AOV Products
+## 2. Investigate High-AOV Products
 
 High average-order-value categories can be evaluated for:
 
@@ -551,24 +547,24 @@ Premium product opportunities
 Cross-selling
 Upselling
 
-# 3. Improve Logistics
+## 3. Improve Logistics
 
 Investigate states and regions with higher delivery times to identify potential logistics bottlenecks.
 
-# 4. Prepare for Seasonal Demand
+## 4. Prepare for Seasonal Demand
 
 Historical sales peaks can be used to improve:
 
-Inventory planning
-Staffing
-Fulfillment capacity
-Promotional planning
+- Inventory planning
+- Staffing
+- Fulfillment capacity
+- Promotional planning
 
-# 5. Optimize Payment Experience
+## 5. Optimize Payment Experience
 
 Continue optimizing the dominant credit-card checkout experience while encouraging alternative payment methods.
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```text
 Retail-Sales-E-Commerce-Analytics-Dashboard/
@@ -621,7 +617,7 @@ Retail-Sales-E-Commerce-Analytics-Dashboard/
 ├── .gitignore
 └── README.md
 ```
-## 🛠️ Technology Stack
+# 🛠️ Technology Stack
 
 | Technology       | Purpose                         |
 | ---------------- | ------------------------------- |
@@ -635,7 +631,7 @@ Retail-Sales-E-Commerce-Analytics-Dashboard/
 | **Llama 3.2 3B** | AI failure investigation        |
 | **Git/GitHub**   | Version control                 |
 
-## 🧪 Testing
+# 🧪 Testing
 
 The project includes controlled failure tests for the investigation workflow.
 
@@ -667,4 +663,169 @@ Deterministic Investigator
       ↓
 Local LLM Investigator
 
-## 🔐 Configuration
+# 🔐 Configuration
+
+Database credentials are stored locally using environment variables.
+
+Example configuration:
+```text
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=your_database_name
+DB_USER=your_mysql_user
+DB_PASSWORD=your_mysql_password
+```
+The actual .env file is excluded from Git.
+
+A template is provided:
+
+.env.example
+
+# 🚀 How to Run
+
+## 1. Clone the repository
+```text
+git clone <repository-url>
+cd Retail-Sales-E-Commerce-Analytics-Dashboard
+```
+## 2. Configure the database
+
+Create a local .env file based on:
+
+.env.example
+
+## 3. Run the daily report
+
+python -m automation.runner 2018-08-29
+
+## 4. Test failure investigation
+
+python -m automation.runner 2018-08-29 --test-failure
+
+## 5. Run automated reporting
+
+.\automation\run_daily_report.bat
+
+# 📌 Skills Demonstrated
+
+## Data Analytics
+
+- SQL
+- MySQL
+- Data cleaning
+- Data transformation
+- KPI development
+- Business analysis
+- Trend analysis
+- Geographic analysis
+
+## Business Intelligence
+
+- Power BI
+- DAX
+- Power Query
+- Data modeling
+- Dashboard design
+- Data storytelling
+
+## Data Automation
+
+- Python automation
+- Scheduled reporting
+- SQL execution
+- JSON report generation
+- Validation
+- Error handling
+- Logging
+
+## Data Reliability
+
+- Schema inspection
+- Failure detection
+- Root-cause analysis
+- Controlled failure testing
+- Deterministic validation
+
+## AI / LLM
+
+- Ollama
+- Llama 3.2
+- Local LLM inference
+- AI-assisted debugging
+- Structured failure investigation
+- AI-generated remediation suggestions
+
+# 🎯 What Makes This Project Different
+
+This project is not just a dashboard.
+
+It demonstrates three layers of analytics work:
+```text
+┌──────────────────────────────┐
+│      BUSINESS ANALYTICS      │
+│                              │
+│ Power BI + DAX + SQL         │
+│ KPIs + Insights + Trends     │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│       DATA AUTOMATION         │
+│                              │
+│ Python + SQL + Scheduling    │
+│ Automated Reporting          │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│     AI DATA OPERATIONS       │
+│                              │
+│ Schema Inspection            │
+│ Failure Analysis             │
+│ Local LLM Investigation      │
+└──────────────────────────────┘
+```
+
+Instead of simply answering:
+
+"What happened in the data?"
+
+the system also addresses:
+
+"Can this analysis run automatically?"
+
+and:
+
+"What happens when the reporting workflow fails?"
+
+That makes the project closer to a real-world analytics workflow.
+
+# 🔮 Future Improvements
+
+Potential future improvements include:
+
+- Add additional automated reports
+- Automate sales-by-category reporting
+- Automate customer KPI reporting
+- Add automated email/report delivery
+- Add data-quality checks
+- Add anomaly detection
+- Add retry mechanisms
+- Add structured JSON output from the LLM
+- Add more SQL failure scenarios
+- Add automated Power BI dataset refresh
+- Add dashboard monitoring
+- Add report execution history
+- Add centralized logging
+- Add Docker-based deployment
+- Deploy the reporting workflow to a cloud environment
+
+# 📌 Project Summary
+
+This project demonstrates an end-to-end E-Commerce Analytics and Automated Reporting System combining:
+
+MySQL + SQL + Python + Power BI + DAX + Automation + Local AI
+
+The system transforms e-commerce data into interactive business intelligence while also implementing an automated reporting workflow capable of detecting, investigating, and explaining SQL failures.
+
+It demonstrates practical skills across Data Analytics, Business Intelligence, Data Automation, Data Quality, and AI-assisted data operations.
