@@ -52,6 +52,17 @@ The automated workflow then handles these reports without requiring manual SQL e
    JSON Report   Schema Inspection
                     |
                     v
+
+📊 Power BI Dashboard
+1. Executive Sales Overview
+
+Key metrics:
+
+Total Sales: 13.59M
+Total Orders: ~99K
+Average Order Value: 136.68
+Average Delivery Days: 12.18
+Monthly sales trend
              Deterministic Analysis
                     |
                     v
