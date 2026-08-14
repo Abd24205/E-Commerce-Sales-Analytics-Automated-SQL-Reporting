@@ -53,6 +53,8 @@ The automated workflow then handles these reports without requiring manual SQL e
                     |
                     v
 
+```
+
 📊 Power BI Dashboard
 1. Executive Sales Overview
 
